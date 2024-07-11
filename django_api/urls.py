@@ -1,5 +1,5 @@
 """
-URL configuration for django_project project.
+URL configuration for back_end_python project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,8 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
+from rest_framework import routers
+
+routers = routers.DefaultRouter()
+routers.register(r'user',views.UserViewSet)
+# routers.register(r'login',views.LoginView.as_view())
+# routers.register(r'user/<int:id>/',views.UserViewSet)
+routers.register(r'users',views.UsersViewSet) 
+# routers.register(r'login',views.UserViewGet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/',include('django_api.urls')),
+    # path('admin/', admin.site.urls),
+    path('login/', views.LoginView.as_view()),
+    # path('api/',include('rest_framework.urls', namespace='rest_framework'))
 ]
+
+urlpatterns += routers.urls

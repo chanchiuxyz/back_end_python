@@ -1,5 +1,5 @@
 # start
-```python
+```py
 # Create the directory for the project
 mkdir back_end_python
 cd back_end_python
@@ -23,7 +23,20 @@ pip install django-cors-headers
 ```
 
 # Database Mysql
-```
+```py
 # install mysqlclient
 pip install mysqlclient
+```
+# coding
+## setting.py
+```py
+INSTALLED_APPS = [
+    'corsheaders',
+    'django_api',
+    'rest_framework',
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',#Access-Control-Allow-Origin
+]
 ```
