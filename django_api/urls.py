@@ -20,16 +20,18 @@ from . import views
 from rest_framework import routers
 
 routers = routers.DefaultRouter()
-routers.register(r'user',views.UserViewSet)
+# routers.register(r'user',views.UserViewSet)
 # routers.register(r'login',views.LoginView.as_view())
 # routers.register(r'user/<int:id>/',views.UserViewSet)
-routers.register(r'users',views.UsersViewSet) 
+# routers.register(r'users',views.UsersViewSet.as_view()) 
 # routers.register(r'login',views.UserViewGet)
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('login/', views.LoginView.as_view()),
+    path('user/', views.UserView.as_view()),
+
     # path('api/',include('rest_framework.urls', namespace='rest_framework'))
 ]
 
-urlpatterns += routers.urls
+# urlpatterns += routers.urls

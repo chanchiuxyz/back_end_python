@@ -11,22 +11,38 @@ from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 
 
+
 # Create your views here.
 
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
+        # data = json.load(request.body)
+        # print(request.body)
         username = request.data.get('username')
         password = request.data.get('password')
+  
         user = authenticate(request, username=username, password=password)
+        # print('us',user)
         if user is not None:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key})
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'status':0 , 'data':{'token': token.key}})
+        return Response({'error': 'Invalid Credentials'}, status=400)
 
 def index(request) :
     return HttpResponse('django_api pages')
 
+class UserView(APIView):
+
+    def post(self, request):
+        username = request.data.get('username')
+        print('data',request.data)
+        user = User.objects.get(username = username)
+        user._id = str(user._id)
+        print(user)
+        serializer_class = UserSerializer
+        serializer = UserSerializer(instance=user, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     # username = request.query_params.get('username',None)
@@ -35,7 +51,7 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     @action(detail=True, methods=['get'])
-    def username(self,request, pk=None):
+    def getuser(self,request, pk=None):
         # se = self.get_object()
         # print('request',se)
         # print('request',self)
@@ -79,7 +95,7 @@ class UserViewSet(viewsets.ModelViewSet):
         print(password)
         return Response(response)
 
-class UsersViewSet(viewsets.ModelViewSet):
+class UsersViewSet(APIView):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
