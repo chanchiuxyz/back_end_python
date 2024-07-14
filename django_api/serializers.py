@@ -1,18 +1,48 @@
 from rest_framework import serializers
-from .models import Users,User
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['_id' ,'username','password','phone','email','role_id','create_time']
-            # 自定义字段输出格式
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        # 例如，把日期格式化为字符串
-        data['_id'] = str(instance._id)
-        return data
+from .models import Users, Roles, Categories, Products
 
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Users
-        fields = ['_id','username','password','phone','email','role_id','create_time']
+        fields = '__all__'
+        # fields = ['_id' ,'username','password','phone','email','role_id','create_time']
+            # _id int to str
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        # _id int to str
+        data['_id'] = str(instance._id)
+        return data
+    
+class RolesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Roles
+        fields = '__all__'
+        # fields = ['_id' ,'username','password','phone','email','role_id','create_time']
+            # _id int to str
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        # _id int to str
+        data['_id'] = str(instance._id)
+        return data
+class CategoriesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Categories
+        fields = '__all__'
+        # fields = ['_id' ,'username','password','phone','email','role_id','create_time']
+            # _id int to str
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        # _id int to str
+        data['_id'] = str(instance._id)
+        return data
+class ProductsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Products
+        fields = '__all__'
+        # fields = ['_id' ,'username','password','phone','email','role_id','create_time']
+            # _id int to str
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        # _id int to str
+        data['_id'] = str(instance._id)
+        return data

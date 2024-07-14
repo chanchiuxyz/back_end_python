@@ -40,3 +40,4 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',#Access-Control-Allow-Origin
 ]
 ```
+
