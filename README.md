@@ -40,4 +40,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',#Access-Control-Allow-Origin
 ]
 ```
-
+## category create
+![](./screenshoot/categoryCreate.png)
+![](./screenshoot/categorydb.png)
+![](./screenshoot/categories.png)
