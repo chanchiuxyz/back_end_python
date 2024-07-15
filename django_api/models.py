@@ -1,6 +1,7 @@
 from django.db import models
 import time
 from datetime import datetime
+from django.contrib.auth.models import AbstractUser
 
 
 

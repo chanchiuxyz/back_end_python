@@ -22,7 +22,8 @@ from rest_framework import routers
 routers = routers.DefaultRouter()
 routers.register(r'api/users',views.UsersViewSet)
 routers.register(r'api/roles',views.RolesViewSet)
-routers.register(r'api/categories',views.CategoriesViewSet)
+routers.register(r'^api/categories/$',views.CategoriesViewSet)
+# routers.register(r'^api/user/(?P<name>\w*)/$',views.GetUserViewSet.as_view())
 routers.register(r'api/products',views.ProductsViewSet)
 # routers.register(r'api/user/<username>',views.UserDetailViewSet)
 # routers.register(r'login',views.LoginView.as_view())
@@ -33,7 +34,7 @@ routers.register(r'api/products',views.ProductsViewSet)
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('api/login/', views.LoginView.as_view()),
-    # re_path('^api/user/(\w*)', views.UserView.as_view()),
+    re_path('^api/user/(?P<name>\w+)/$', views.GetUserViewSet.as_view()),
 
     # path('api/',include('rest_framework.urls', namespace='rest_framework'))
 ]

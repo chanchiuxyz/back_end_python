@@ -9,9 +9,9 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import Users, Roles, Categories, Products
-from django_api.serializers import UsersSerializer, RolesSerializer, CategoriesSerializer, ProductsSerializer
-from rest_framework.views import APIView
-from rest_framework.generics import GenericAPIView
+from django_api.serializers import UsersSerializer, RolesSerializer, CategoriesSerializer, ProductsSerializer, GetUserSerializer
+from rest_framework.views import APIView, View
+from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
@@ -59,7 +59,18 @@ def index(request) :
 
 #         serializer = UsersSerializer(item)
 #         return Response(serializer.data)
- 
+# get user by username
+class GetUserViewSet(RetrieveAPIView,APIView) :
+    # serializer_class = GetUserSerializer
+
+    def get(self, request, name, *args, **kwargs):
+        try:
+            user = Users.objects.get(username=name)
+            serializer = GetUserSerializer(user,context={'request': request})
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Users.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
 class UsersViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
@@ -74,27 +85,27 @@ class UsersViewSet(viewsets.ModelViewSet):
         
         # save
         UsersSerializer.save(**data)
-    @action(detail=False, methods=['post'])
-    def getuser(self, request):
-        # get params from request body
-        username = request.data.get('username',None)
-        password = request.data.get('username',None)
-        # get params from url
-        # ususernameer = request.query_params.get('username')
-        try :
-            user = Users.objects.get(username=username)
-        except :
-            return Response({'status': 1 , 'data': 'user not exist'})
-        print(user.username,user.password)
-        # get params from url
-        # instance = User.query_params.get(username=username)
-        serializer = UsersSerializer(user,context={'request': request})
-        password = hashlib.md5(password.encode()).hexdigest()
-        if (user.username == username and user.password == password):
-            response = {'status': 0 , 'data':serializer.data}
-        else:
-            response = {'status': 1 , 'data': serializer.error_messages}
-        return Response(response)
+    # @action(detail=False, methods=['post'])
+    # def getuser(self, request):
+    #     # get params from request body
+    #     username = request.data.get('username',None)
+    #     password = request.data.get('username',None)
+    #     # get params from url
+    #     # ususernameer = request.query_params.get('username')
+    #     try :
+    #         user = Users.objects.get(username=username)
+    #     except :
+    #         return Response({'status': 1 , 'data': 'user not exist'})
+    #     print(user.username,user.password)
+    #     # get params from url
+    #     # instance = User.query_params.get(username=username)
+    #     serializer = UsersSerializer(user,context={'request': request})
+    #     password = hashlib.md5(password.encode()).hexdigest()
+    #     if (user.username == username and user.password == password):
+    #         response = {'status': 0 , 'data':serializer.data}
+    #     else:
+    #         response = {'status': 1 , 'data': serializer.error_messages}
+    #     return Response(response)
 class RolesViewSet(viewsets.ModelViewSet):
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
@@ -108,6 +119,17 @@ class CategoriesViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+
+# class TestViewSet(View):
+#     # queryset = Products.objects.all()
+#     def get(self, request,name) :
+#         category = Categories.objects.get(name=name)
+#         serializer_class = CategoriesSerializer
+#         # permission_classes = [permissions.IsAuthenticated]
+#         # authentication_classes = [TokenAuthentication]
+#         # permission_classes = [permissions.IsAuthenticated]
+#         serializer = CategoriesSerializer(instance=category)
+#         return Response(serializer.data)
 
 class ProductsViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
