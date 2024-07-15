@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include,re_path
-from . import views
+from django_api import views
 from rest_framework import routers
 
 routers = routers.DefaultRouter()
 routers.register(r'api/users',views.UsersViewSet)
 routers.register(r'api/roles',views.RolesViewSet)
-routers.register(r'^api/categories/$',views.CategoriesViewSet)
+routers.register(r'api/categories',views.CategoriesViewSet)
 # routers.register(r'^api/user/(?P<name>\w*)/$',views.GetUserViewSet.as_view())
 routers.register(r'api/products',views.ProductsViewSet)
 # routers.register(r'api/user/<username>',views.UserDetailViewSet)

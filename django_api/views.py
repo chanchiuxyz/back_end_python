@@ -85,27 +85,27 @@ class UsersViewSet(viewsets.ModelViewSet):
         
         # save
         UsersSerializer.save(**data)
-    # @action(detail=False, methods=['post'])
-    # def getuser(self, request):
-    #     # get params from request body
-    #     username = request.data.get('username',None)
-    #     password = request.data.get('username',None)
-    #     # get params from url
-    #     # ususernameer = request.query_params.get('username')
-    #     try :
-    #         user = Users.objects.get(username=username)
-    #     except :
-    #         return Response({'status': 1 , 'data': 'user not exist'})
-    #     print(user.username,user.password)
-    #     # get params from url
-    #     # instance = User.query_params.get(username=username)
-    #     serializer = UsersSerializer(user,context={'request': request})
-    #     password = hashlib.md5(password.encode()).hexdigest()
-    #     if (user.username == username and user.password == password):
-    #         response = {'status': 0 , 'data':serializer.data}
-    #     else:
-    #         response = {'status': 1 , 'data': serializer.error_messages}
-    #     return Response(response)
+    @action(detail=False, methods=['post'])
+    def getuser(self, request):
+        # get params from request body
+        username = request.data.get('username',None)
+        password = request.data.get('username',None)
+        # get params from url
+        # ususernameer = request.query_params.get('username')
+        try :
+            user = Users.objects.get(username=username)
+        except :
+            return Response({'status': 1 , 'data': 'user not exist'})
+        print(user.username,user.password)
+        # get params from url
+        # instance = User.query_params.get(username=username)
+        serializer = UsersSerializer(user,context={'request': request})
+        password = hashlib.md5(password.encode()).hexdigest()
+        if (user.username == username and user.password == password):
+            response = {'status': 0 , 'data':serializer.data}
+        else:
+            response = {'status': 1 , 'data': serializer.error_messages}
+        return Response(response)
 class RolesViewSet(viewsets.ModelViewSet):
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
@@ -113,12 +113,15 @@ class RolesViewSet(viewsets.ModelViewSet):
     # authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-class CategoriesViewSet(viewsets.ModelViewSet):
+class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPIView):
+    # print('cate')
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]  # Ensure you have the correct permissions
+
 
 # class TestViewSet(View):
 #     # queryset = Products.objects.all()

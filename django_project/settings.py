@@ -85,7 +85,8 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': '3306',
+        'max_age': '3600'
     
     }
 }
@@ -130,3 +131,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ALLOW_ALL_ORIGINS = True  # For development purposes only. Use specific origins in production.
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
