@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t&hmg+2#w8p!s=s)!ch=!o*l!ou%j#_h^a6w+lwk=#ofai0^ab
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.68.111', 'localhost', '127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
@@ -86,7 +86,7 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
-        'max_age': '3600'
+        'CONN_MAX_AGE': 7200,#2h
     
     }
 }

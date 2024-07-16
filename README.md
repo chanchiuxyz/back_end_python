@@ -40,6 +40,18 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',#Access-Control-Allow-Origin
 ]
 ```
+# tips
+```python
+# server will postpone response about 5 seconds after got the request from front-end.
+py manage.py runserver
+# will resolve the the delay response
+py manage.py runserver --noreload
+# Allow: GET,POST,HEAD, OPTIONS, Not allowed PUT,PATCH, DELETE  
+class CategoriesViewSet(viewsets.ModelViewSet):
+# generics.RetrieveUpdateDestroyAPIView will  allowed PUT,PATCH, DELETE 
+class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPIView):    
+```
+
 ## category create
 ![](./screenshoot/categoryCreate.png)
 ![](./screenshoot/categorydb.png)

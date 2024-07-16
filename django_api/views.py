@@ -122,6 +122,9 @@ class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPI
     permission_classes = [permissions.IsAuthenticated]
     # permission_classes = [permissions.AllowAny]  # Ensure you have the correct permissions
 
+    # def patch(self) :
+    #     return Response({'patch': 'django'})
+
 
 # class TestViewSet(View):
 #     # queryset = Products.objects.all()
