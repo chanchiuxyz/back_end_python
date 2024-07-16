@@ -17,6 +17,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
 # md5
 import hashlib
+from django_filters import rest_framework as filters
 
 
 # Create your views here.
@@ -112,7 +113,14 @@ class RolesViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
-
+# FilterSet tutorial:
+# https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html
+class CategoriesFilter(filters.FilterSet):
+    parentId = filters.CharFilter(field_name="parentId", lookup_expr='exact')
+    # max_price = filters.NumberFilter(field_name="price", lookup_expr='lte')
+    class Meta:
+        model = Categories
+        fields = ['parentId']
 class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPIView):
     # print('cate')
     queryset = Categories.objects.all()
@@ -120,6 +128,9 @@ class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPI
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+    # filter
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = CategoriesFilter
     # permission_classes = [permissions.AllowAny]  # Ensure you have the correct permissions
 
     # def patch(self) :

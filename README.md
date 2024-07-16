@@ -51,7 +51,11 @@ class CategoriesViewSet(viewsets.ModelViewSet):
 # generics.RetrieveUpdateDestroyAPIView will  allowed PUT,PATCH, DELETE 
 class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPIView):    
 ```
-
+## install Django filter
+### tutorial: https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html
+```
+ pip install django-filter
+```
 ## category create
 ![](./screenshoot/categoryCreate.png)
 ![](./screenshoot/categorydb.png)
