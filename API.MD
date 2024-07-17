@@ -12,9 +12,9 @@
 	9). get category by id
     10). add merchandise
 	11). get merchandise
-	). add role
-	). get roles
-	). ahthorize rights to role
+	12). add role
+	13). get roles
+	14). ahthorize rights to role
 
 ## 1.1 Auth
 
@@ -206,92 +206,94 @@ success:
         "_id": "4"
     }  
 
-## 7 get category I or category II
+## 7 get categories(filter)
 ### reqURL：
-	http://localhost:5000/manage/category/list
+	http://localhost:8000/api/categories/?parentId=0
 
 ### method：
 	GET
 
 ### parameter 
-	|parameter		|required |type     |memo
-	|parentId    |Y       |string   |father's id
+
 
 ### response：
 ```
-    categary I:
-      {
-        "status": 0,
-        "data": [
-          {
-            "parentId": "0",
-            "_id": "5c2ed631f352726338607046",
-            "name": "category01",
-            "__v": 0
-          },
-          {
-            "parentId": "0",
-            "_id": "5c2ed647f352726338607047",
-            "name": "category02",
-            "__v": 0
-          }
-        ]
-      }
-   categary II:
-      {
-        "status": 0,
-        "data": [
-          {
-            "parentId": "5c2ed64cf352726338607048",
-            "_id": "5c2ed65df352726338607049",
-            "name": "3333",
-            "__v": 0
-          },
-          {
-            "parentId": "5c2ed64cf352726338607048",
-            "_id": "5c2ed66ff35272633860704a",
-            "name": "444",
-            "__v": 0
-          }
-        ]
-      }
+[
+    {
+        "url": "http://127.0.0.1:8000/api/categories/2/",
+        "name": "Electronics",
+        "parentId": "0",
+        "_id": "2"
+    },
+    {
+        "url": "http://127.0.0.1:8000/api/categories/3/",
+        "name": "Fashion",
+        "parentId": "0",
+        "_id": "3"
+    },
+    {
+        "url": "http://127.0.0.1:8000/api/categories/4/",
+        "name": "Books",
+        "parentId": "0",
+        "_id": "4"
+    },
+    {
+        "url": "http://127.0.0.1:8000/api/categories/5/",
+        "name": "Toys",
+        "parentId": "0",
+        "_id": "5"
+    },
+    {
+        "url": "http://127.0.0.1:8000/api/categories/6/",
+        "name": "TV&Home Theatre",
+        "parentId": "0",
+        "_id": "6"
+    },
+    {
+        "url": "http://127.0.0.1:8000/api/categories/11/",
+        "name": "Home",
+        "parentId": "0",
+        "_id": "11"
+    }
+]
 ```
 
 ## 8 modify category
 ### reqURL：
-    http://localhost:5000/manage/category/modify
-
+    http://localhost:8000/api/categories/_id/
 ### method:
-    POST
+    PATCH
 
 ### parameter:
 
     |parameter		|required |type     |memo
-    |categoryId    |Y       |string   |_id
-    |categoryName  |Y       |string   |name
+    |name  |Y       |string   |name
 
 ### response：
-    {
-      "status": 0
-    }
+{
+    "url": "http://127.0.0.1:8000/api/categories/2/",
+    "name": "Electronic",
+    "parentId": "0",
+    "_id": "2"
+}
 
 ## 9 get category name by category id
 ### reqURL：
-	http://localhost:5000/manage/category/name
+	http://127.0.0.1:8000/api/categories/_id/
 
 ### method：
 	GET
 
 ### parameter 
-	|parameter		|required |type     |memo
-	|_id           |Y       |string   |category id
+
 
 ### response：：
 {
-    "status": 0,
-    "data": "category name"
+    "url": "http://127.0.0.1:8000/api/categories/3/",
+    "name": "Fashion",
+    "parentId": "0",
+    "_id": "3"
 }
-  
       
 
 
