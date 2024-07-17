@@ -60,3 +60,13 @@ class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPI
 ![](./screenshoot/categoryCreate.png)
 ![](./screenshoot/categorydb.png)
 ![](./screenshoot/categories.png)
+
+## API (Categories)
+```
+(get, post): 
+http://127.0.0.1:8000/api/categories/ 
+(put,patch,delete): 
+http://127.0.0.1:8000/api/categories/_id/
+filter(get by parentId) : 
+http://127.0.0.1:8000/api/categories/?parentId=2
+```
