@@ -19,6 +19,9 @@ from rest_framework.authentication import TokenAuthentication
 import hashlib
 from django_filters import rest_framework as filters
 
+from .forms import UploadFileForm
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 
@@ -154,3 +157,15 @@ class ProductsViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+
+@csrf_exempt
+def upload_image(request):
+    print('upload')
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            # form.save()
+            return HttpResponse('Image uploaded successfully.')
+    else:
+        form = UploadFileForm()
+    return HttpResponse('Image uploaded error.')

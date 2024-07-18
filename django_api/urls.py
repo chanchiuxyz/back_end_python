@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path, include,re_path
 from django_api import views
 from rest_framework import routers
+from django.conf.urls.static import static
+
+from django.conf import settings
 
 routers = routers.DefaultRouter()
 routers.register(r'api/users',views.UsersViewSet)
@@ -35,8 +38,9 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('api/login/', views.LoginView.as_view()),
     re_path('^api/user/(?P<name>\w+)/$', views.GetUserViewSet.as_view()),
+    path('api/upload/', views.upload_image),
 
     # path('api/',include('rest_framework.urls', namespace='rest_framework'))
 ]
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += routers.urls
