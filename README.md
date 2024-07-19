@@ -69,4 +69,8 @@ http://127.0.0.1:8000/api/categories/
 http://127.0.0.1:8000/api/categories/_id/
 filter(get by parentId) : 
 http://127.0.0.1:8000/api/categories/?parentId=2
+
 ```
+
+## save picture to back-end & save array to Mysql
+

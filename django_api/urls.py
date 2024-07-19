@@ -39,8 +39,9 @@ urlpatterns = [
     path('api/login/', views.LoginView.as_view()),
     re_path('^api/user/(?P<name>\w+)/$', views.GetUserViewSet.as_view()),
     path('api/upload/', views.upload_image),
+    # path('api/getcsrf/', views.get_csrf),
 
     # path('api/',include('rest_framework.urls', namespace='rest_framework'))
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += routers.urls

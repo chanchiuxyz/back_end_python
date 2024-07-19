@@ -11,7 +11,7 @@ from rest_framework.decorators import action
 from .models import Users, Roles, Categories, Products
 from django_api.serializers import UsersSerializer, RolesSerializer, CategoriesSerializer, ProductsSerializer, GetUserSerializer
 from rest_framework.views import APIView, View
-from rest_framework.generics import GenericAPIView, RetrieveAPIView
+# from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
@@ -19,9 +19,11 @@ from rest_framework.authentication import TokenAuthentication
 import hashlib
 from django_filters import rest_framework as filters
 
-from .forms import UploadFileForm
+# from .forms import UploadFileForm
 from django.views.decorators.csrf import csrf_exempt
-
+from django.template.context_processors import csrf
+from django.conf import settings
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -64,7 +66,7 @@ def index(request) :
 #         serializer = UsersSerializer(item)
 #         return Response(serializer.data)
 # get user by username
-class GetUserViewSet(RetrieveAPIView,APIView) :
+class GetUserViewSet(generics.RetrieveAPIView,APIView) :
     # serializer_class = GetUserSerializer
 
     def get(self, request, name, *args, **kwargs):
@@ -90,6 +92,7 @@ class UsersViewSet(viewsets.ModelViewSet):
         # save
         UsersSerializer.save(**data)
     @action(detail=False, methods=['post'])
+    @csrf_exempt
     def getuser(self, request):
         # get params from request body
         username = request.data.get('username',None)
@@ -160,12 +163,19 @@ class ProductsViewSet(viewsets.ModelViewSet):
 
 @csrf_exempt
 def upload_image(request):
-    print('upload')
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            # form.save()
-            return HttpResponse('Image uploaded successfully.')
-    else:
-        form = UploadFileForm()
-    return HttpResponse('Image uploaded error.')
+    # print('upload')
+    # print(request)
+    # return HttpResponse('Image uploaded successfully.')
+    file = request.FILES['image']
+    root = '%s\%s'%(settings.PICUTRES, file.name)
+    with open(root, 'wb') as f:
+        for i in file.chunks():
+            f.write(i)
+    response = {'status': 0 , 'data': {'name':file.name}}
+    # response = json.load(response)
+    return JsonResponse(data=response)
+# def get_csrf(request):
+#         #generate csrf send to front-end 
+#     x = csrf(request)
+#     csrf_token = x['csrf_token']
+#     return HttpResponse('{} ; {}'.format('csrf_token', csrf_token))

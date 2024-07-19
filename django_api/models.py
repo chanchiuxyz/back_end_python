@@ -3,6 +3,9 @@ import time
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 import json
+# from django.contrib.postgres.fields import ArrayField
+
+
 
 
 
@@ -32,21 +35,22 @@ class Categories(models.Model):
 
 class Products(models.Model):
     _id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=40)
     categoryId = models.CharField(max_length=15)
-    PategoryId = models.CharField(max_length=15)
-    price = models.IntegerField()
+    pCategoryId = models.CharField(max_length=15)
+
+    price = models.CharField(max_length=15)
     desc = models.CharField(max_length=1000)
     status = models.IntegerField(default=1)
-    images = models.TextField(blank=True)
+    imgs = models.JSONField(max_length=1000, blank=True)
 
-    def set_array(self, array):
-        self.images = json.dumps(array)
+    # def set_array(self, array):
+    #     self.imgs = json.dumps(array)
  
-    def get_array(self):
-        if self.images:
-            return json.loads(self.array_field)
-        return []
+    # def get_array(self):
+    #     if self.imgs:
+    #         return json.loads(self.array_field)
+    #     return []
 
 
 
