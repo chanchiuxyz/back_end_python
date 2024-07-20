@@ -63,14 +63,22 @@ class CategoriesViewSet(viewsets.ModelViewSet, generics.RetrieveUpdateDestroyAPI
 
 ## API (Categories)
 ```
-(get, post): 
+# (get: get categories, post: create category): 
 http://127.0.0.1:8000/api/categories/ 
-(put,patch,delete): 
+# (put,patch: update category ,delete: remove category): 
 http://127.0.0.1:8000/api/categories/_id/
-filter(get by parentId) : 
+# filter(get: get by parentId) : 
 http://127.0.0.1:8000/api/categories/?parentId=2
 
 ```
+## API (products)
+```
+# (get: get products, post: crete product)
+http://127.0.0.1:8000/api/products/ 
+# (put,patch: update product, delete: remove product)
+http://127.0.0.1:8000/api/products/_id/ 
+```
+## save picture to and get picture form back-end & save array to Mysql
+![](./screenshoot/getPicture.png)
 
-## save picture to back-end & save array to Mysql
 

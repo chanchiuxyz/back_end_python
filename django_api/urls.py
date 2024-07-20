@@ -45,3 +45,4 @@ urlpatterns = [
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += routers.urls
+urlpatterns += static(settings.PICTURES_URL, document_root=settings.PICTURES_ROOT)

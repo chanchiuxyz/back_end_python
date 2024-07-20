@@ -167,7 +167,7 @@ def upload_image(request):
     # print(request)
     # return HttpResponse('Image uploaded successfully.')
     file = request.FILES['image']
-    root = '%s\%s'%(settings.PICUTRES, file.name)
+    root = '%s\%s'%(settings.PICTURES_ROOT, file.name)
     with open(root, 'wb') as f:
         for i in file.chunks():
             f.write(i)

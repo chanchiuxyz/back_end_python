@@ -157,6 +157,7 @@ REST_FRAMEWORK = {
     }
 }
 
-PICUTRES = BASE_DIR/'pictures'
+PICTURES_URL = '/pictures/'
+PICTURES_ROOT = BASE_DIR/'pictures'
 # PICUTRES = os.path.join(BASE_DIR, 'pictures')
 
