@@ -113,7 +113,7 @@ class UsersViewSet(viewsets.ModelViewSet):
         else:
             response = {'status': 1 , 'data': serializer.error_messages}
         return Response(response)
-class RolesViewSet(viewsets.ModelViewSet):
+class RolesViewSet(viewsets.ModelViewSet,generics.RetrieveUpdateDestroyAPIView):
     queryset = Roles.objects.all()
     serializer_class = RolesSerializer
     # permission_classes = [permissions.IsAuthenticated]

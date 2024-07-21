@@ -78,6 +78,12 @@ http://127.0.0.1:8000/api/products/
 # (put,patch: update product, delete: remove product)
 http://127.0.0.1:8000/api/products/_id/ 
 ```
+## API (roles)
+```
+# (get: get roles, post: crete role)
+http://127.0.0.1:8000/api/roles/ 
+# (put,patch: update role, delete: remove role)
+http://127.0.0.1:8000/api/products/_id/ 
 ## save picture to and get picture form back-end & save array to Mysql
 ![](./screenshoot/getPicture.png)
 

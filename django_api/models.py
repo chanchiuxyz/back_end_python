@@ -3,7 +3,6 @@ import time
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 import json
-# from django.contrib.postgres.fields import ArrayField
 
 
 
@@ -23,9 +22,9 @@ class Users(models.Model):
 class Roles(models.Model):
     _id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=15)
-    authname = models.CharField(max_length=15)
+    authname = models.CharField(max_length=15,blank=True)
     auth_time = models.DateTimeField(auto_now=True)
-    menus = models.TextField(blank=True)
+    menus = models.JSONField(default=[],max_length=200)
     create_time = models.DateTimeField(auto_now_add=True)
 
 class Categories(models.Model):
