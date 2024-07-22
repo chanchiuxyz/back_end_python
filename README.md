@@ -86,13 +86,14 @@ http://127.0.0.1:8000/api/roles/
 http://127.0.0.1:8000/api/roles/_id/ 
 ## save picture to and get picture form back-end & save array to Mysql
 ![](./screenshoot/getPicture.png)
-
+```
 ## API (users)
 ```
 # (get: get users, post: crete user)
 http://127.0.0.1:8000/api/users/ 
 # (put,patch: update user, delete: remove user)
 http://127.0.0.1:8000/api/users/_id/ 
+```
 ## save picture to and get picture form back-end & save array to Mysql
 ![](./screenshoot/getPicture.png)
 
