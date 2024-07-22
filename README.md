@@ -83,7 +83,16 @@ http://127.0.0.1:8000/api/products/_id/
 # (get: get roles, post: crete role)
 http://127.0.0.1:8000/api/roles/ 
 # (put,patch: update role, delete: remove role)
-http://127.0.0.1:8000/api/products/_id/ 
+http://127.0.0.1:8000/api/roles/_id/ 
+## save picture to and get picture form back-end & save array to Mysql
+![](./screenshoot/getPicture.png)
+
+## API (users)
+```
+# (get: get users, post: crete user)
+http://127.0.0.1:8000/api/users/ 
+# (put,patch: update user, delete: remove user)
+http://127.0.0.1:8000/api/users/_id/ 
 ## save picture to and get picture form back-end & save array to Mysql
 ![](./screenshoot/getPicture.png)
 

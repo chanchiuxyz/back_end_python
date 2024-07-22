@@ -77,7 +77,7 @@ class GetUserViewSet(generics.RetrieveAPIView,APIView) :
         except Users.DoesNotExist:
             return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
 
-class UsersViewSet(viewsets.ModelViewSet):
+class UsersViewSet(viewsets.ModelViewSet,generics.RetrieveUpdateDestroyAPIView):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
     # permission_classes = [permissions.IsAuthenticated]
