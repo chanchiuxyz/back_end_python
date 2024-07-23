@@ -30,6 +30,7 @@
 	|password    |Y       |string   |password(md5)
 
 ### response：
+```
 	success:
     { 'data': 
         {'token': "8e2a301b5c75fc19669328feaacdaa7829824b86"}
@@ -41,6 +42,7 @@
         "status": 1,
         "msg": "username or password err!"
       }
+```
 ## 1.2 login validate
 ### reqURL：
 	http://localhost:8000/api/users/getuser/
@@ -54,6 +56,7 @@
 	|password    |Y       |string   |password(md5)
 
 ### response：
+```
 success:
      { 
         "status": 0,
@@ -76,7 +79,7 @@ success:
         "status": 1,
         "msg": "username or password err!"
       }
-
+```
 
 ## 2. add user
 
@@ -95,6 +98,7 @@ success:
 	|role_id     |N       |string   |role id
 
 ### response
+```
 	{
         "url": "http://localhost:8000/api/users/6/",
         "username": "ChiuChan",
@@ -105,6 +109,7 @@ success:
         "create_time": 1721721007,
         "_id": "6"
     }
+```
 
 ## 3. update user
 ### reqURL：
@@ -123,6 +128,7 @@ success:
     |role_id     |N       |string   |role id
 
 ### response
+```
 {
     "url": "http://localhost:8000/api/users/6/",
     "username": "ChiuChan",
@@ -133,6 +139,7 @@ success:
     "create_time": 1721721007,
     "_id": "6"
 }
+```
 
     
 ## 4. get users
@@ -146,6 +153,7 @@ success:
 	none
 
 ### response
+```
 [
     {
         "url": "http://localhost:8000/api/users/3/",
@@ -178,6 +186,7 @@ success:
         "_id": "6"
     }
 ]
+```
 
 ## 5. delete user
 ### reqURL：
@@ -211,14 +220,14 @@ success:
     |categoryName  |Y       |string   |categoryname
 
 ### response：
-    add category I:
+```
     {
         "url": "http://localhost:8000/api/categories/4/",
         "name": "Books",
         "parentId": "0",
         "_id": "4"
     }  
-
+```
 ## 7 get categories(filter)
 ### reqURL：
 	http://localhost:8000/api/categories/?parentId=0
