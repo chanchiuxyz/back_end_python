@@ -1,4 +1,4 @@
-# API
+# API For python django rest framework back-end
 
 ## catalogue：
 	1). auth/login
@@ -41,7 +41,7 @@
         "status": 1,
         "msg": "username or password err!"
       }
-## 1.2 login
+## 1.2 login validate
 ### reqURL：
 	http://localhost:8000/api/users/getuser/
 
@@ -81,7 +81,7 @@ success:
 ## 2. add user
 
 ### reqURL：
-	http://localhost:5000/manage/user/add
+	http://localhost:8000/api/users/
 
 ### method:
 	POST
@@ -95,31 +95,23 @@ success:
 	|role_id     |N       |string   |role id
 
 ### response
-	success:
-	  {
-        "status": 0,
-        "data": {
-          "_id": "id",
-          "username": "username",
-          "password": "d7b79bb6d6f77e6cbb5df2d0d2478361",
-          "phone": "(672) 380-6541",
-          "email": "chanchiuxyz@gmail.com",
-          "create_time": 1717310748288,
-          "__v": 0
-        }
-      }
-	err
-	  {
-        "status": 1,
-        "msg": "user existed"
-      }
+	{
+        "url": "http://localhost:8000/api/users/6/",
+        "username": "ChiuChan",
+        "password": "3667cd4ff2a99ee4b8848307de798075",
+        "phone": "6723806541",
+        "email": "chanchiuxyz@gmail.com",
+        "role_id": "4",
+        "create_time": 1721721007,
+        "_id": "6"
+    }
 
 ## 3. update user
 ### reqURL：
-	http://localhost:5000/manage/user/update
+	http://localhost:8000/api/users/
 
 ### method:
-	POST
+	PATCH
 
 ### params
 
@@ -131,28 +123,21 @@ success:
     |role_id     |N       |string   |role id
 
 ### response
-	success:
-	  {
-        "status": 0,
-        "data": {
-          "_id": "id",
-          "username": "username",
-          "password": "d7b79bb6d6f77e6cbb5df2d0d2478361",
-          "phone": "(672) 380-6541",
-          "email": "chanchiuxyz@gmail.com",
-          "create_time": 1717310748288,
-          "__v": 0
-        }
-      }
-	error
-	  {
-        "status": 1,
-        "msg": "error"
-      }
+{
+    "url": "http://localhost:8000/api/users/6/",
+    "username": "ChiuChan",
+    "password": "3667cd4ff2a99ee4b8848307de798075",
+    "phone": "6723806541",
+    "email": "chanchiuxyz@gmail.com",
+    "role_id": "5",
+    "create_time": 1721721007,
+    "_id": "6"
+}
+
     
 ## 4. get users
 ### reqURL：
-	http://localhost:5000/manage/user/list
+	http://localhost:8000/api/users/
 
 ### method:
 	GET
@@ -161,16 +146,45 @@ success:
 	none
 
 ### response
+[
     {
-
-	}
+        "url": "http://localhost:8000/api/users/3/",
+        "username": "admin",
+        "password": "21232f297a57a5a743894a0e4a801fc3",
+        "phone": "6723806541",
+        "email": "chanchiuxyz@gmail.com",
+        "role_id": "3",
+        "create_time": 1720917813,
+        "_id": "3"
+    },
+    {
+        "url": "http://localhost:8000/api/users/4/",
+        "username": "test",
+        "password": "098f6bcd4621d373cade4e832627b4f6",
+        "phone": "6723806541",
+        "email": "chanchiuxyz@gmail.com",
+        "role_id": "5",
+        "create_time": 1720917813,
+        "_id": "4"
+    },
+    {
+        "url": "http://localhost:8000/api/users/6/",
+        "username": "ChiuChan",
+        "password": "3667cd4ff2a99ee4b8848307de798075",
+        "phone": "6723806541",
+        "email": "chanchiuxyz@gmail.com",
+        "role_id": "4",
+        "create_time": 1721721007,
+        "_id": "6"
+    }
+]
 
 ## 5. delete user
 ### reqURL：
-	http://localhost:5000/manage/user/delete
+	http://localhost:8000/api/users/
 
 ### method:
-	POST
+	DELETE
 
 ### params:
 
@@ -179,7 +193,6 @@ success:
 
 ### response
 	{
-	  "status": 0
 	}
 
 
@@ -299,7 +312,7 @@ success:
 
 ##  10 add merchandise
 ### reqURL：
-    http://localhost:5000/manage/merchandise/add
+    http://127.0.0.1:8000/api/products/
 
 ### method:
     POST
@@ -313,26 +326,29 @@ success:
     |price         |N       |string   |price
     |imgs          |N       |array    |imgs pics'name (json string)
 ### response:
+```
+[
     {
-        "status": 0,
-        "data": {
-            "status": 1,
-            "imgs": [
-                "image-XXXXXXX.jpg"
-            ],
-            "_id": "5cf394d29929a304dcc0c6eb",
-            "name": "mackBook",
-            "desc": "protable computer",
-            "price": 11111,
-            "pCategoryId": "5ca9d6c0b49ef916541160bb",
-            "categoryId": "5ca9db78b49ef916541160ca",
-            "__v": 0
-        }
+        "url": "http://localhost:8000/api/products/4/",
+        "name": "HP 15.6\" FHD Business Laptop",
+        "categoryId": "12",
+        "pCategoryId": "2",
+        "price": "849",
+        "desc": "Intel Core i5-1135G7, 32GB DDR4 RAM, 1TB PCIe SSD, Intel Iris Xe Graphics, Numpad, Webcam, Wi-Fi 5, Bluetooth, Silver, Win 11 Pro, 32GB Hotface USB Card",
+        "status": 1,
+        "imgs": [
+            "81I6lbcTLIL._AC_SL1500_.jpg",
+            "81vCpjk02EL._AC_SL1500_.jpg",
+            "81YYMWWOFkL._AC_SL1500_.jpg"
+        ],
+        "_id": "4"
     }
+]
+```
 
 ## 11 get merchandise
 ### reqURL：
-    http://localhost:5000/manage/product/list
+    http://127.0.0.1:8000/api/products/
 
 ### method:
     GET
@@ -345,69 +361,29 @@ success:
 
 ### response：
 ```
-   {
-    "status": 0,
-    "data": {
-        "pageNum": 1,
-        "total": 4,
-        "pages": 2,
-        "pageSize": 3,
-        "list": [
-            {
-                "_id": "6676914f39127af25914c605",
-                "categoryId": "666b724eadbd9012cce163b9",
-                "pCategoryId": "666b724eadbd9012cce163b9",
-                "name": "MacBook Air 13-inch Laptop",
-                "price": 1449.99,
-                "desc": "Apple 2024 MacBook Air 13-inch Laptop with M3 chip: 13.6-inch Liquid Retina Display, 8GB Unified Memory, 256GB SSD Storage, 1080p FaceTime HD Camera, Touch ID; Midnight, English Backlit Keyboard",
-                "status": 1,
-                "imgs": [
-                    "image-1719046456633.jpg",
-                    "image-1719046463497.jpg",
-                    "image-1719046466173.jpg",
-                    "image-1719046470018.jpg"
-                ],
-                "__v": 0
-            },
-            {
-                "_id": "6677e6a18be3563fcfe1a456",
-                "categoryId": "666b724eadbd9012cce163b9",
-                "pCategoryId": "666b724eadbd9012cce163b9",
-                "name": "ASUS Vivobook 15 Laptop",
-                "price": 1099,
-                "desc": "15.6” FHD (1920 x 1080) Display, Intel Core i7-1355U CPU, Intel Iris Xᵉ Graphics, 16GB RAM, 1TB SSD, Windows 11 Home, Quiet Blue, X1504VA-AS71-CA",
-                "status": 1,
-                "imgs": [
-                    "image-1719133841189.jpg",
-                    "image-1719133845502.jpg",
-                    "image-1719133852504.jpg"
-                ],
-                "__v": 0
-            },
-            {
-                "_id": "6678c09d8be3563fcfe1a478",
-                "categoryId": "666b724eadbd9012cce163b9",
-                "pCategoryId": "666b724eadbd9012cce163b9",
-                "name": "HP 15.6\" FHD Business Laptop",
-                "price": 849,
-                "desc": "Intel Core i5-1135G7, 32GB DDR4 RAM, 1TB PCIe SSD, Intel Iris Xe Graphics, Numpad, Webcam, Wi-Fi 5, Bluetooth, Silver, Win 11 Pro, 32GB Hotface USB Card",
-                "status": 1,
-                "imgs": [
-                    "image-1719189650206.jpg",
-                    "image-1719189654371.jpg",
-                    "image-1719189658283.jpg"
-                ],
-                "__v": 0
-            }
-        ]
+ [
+    {
+        "url": "http://localhost:8000/api/products/4/",
+        "name": "HP 15.6\" FHD Business Laptop",
+        "categoryId": "12",
+        "pCategoryId": "2",
+        "price": "849",
+        "desc": "Intel Core i5-1135G7, 32GB DDR4 RAM, 1TB PCIe SSD, Intel Iris Xe Graphics, Numpad, Webcam, Wi-Fi 5, Bluetooth, Silver, Win 11 Pro, 32GB Hotface USB Card",
+        "status": 1,
+        "imgs": [
+            "81I6lbcTLIL._AC_SL1500_.jpg",
+            "81vCpjk02EL._AC_SL1500_.jpg",
+            "81YYMWWOFkL._AC_SL1500_.jpg"
+        ],
+        "_id": "4"
     }
-}
+]
 ```
 
 ## 12 add role
 
 ### reqURL：
-    http://localhost:5000/manage/role/create
+    http://127.0.0.1:8000/api/roles/
 
 ### method:
     POST
@@ -418,20 +394,23 @@ success:
 
 ### response
     {
-        "status": 0,
-        "data": {
-            "menus": [],
-            "_id": "id",
-            "name": "role name",
-            "create_time": time,
-            "__v": 0
-        }
+        "url": "http://localhost:8000/api/roles/5/",
+        "name": "agent",
+        "authname": "admin",
+        "auth_time": "2024-07-21T09:11:15.242240Z",
+        "menus": [
+            "Merchandise",
+            "/category",
+            "/merchandise"
+        ],
+        "create_time": "2024-07-21T09:01:09.455749Z",
+        "_id": "5"
     }
 
 
 ## get roles
 ### reqURL：
-    http://localhost:5000/manage/role/list
+    http://127.0.0.1:8000/api/roles/
 
 ### method:
     GET
@@ -440,48 +419,48 @@ success:
     -
 
 ### parameter
+   ```
+   [
     {
-        "status": 0,
-        "data": [
-            {
-                "menus": [
-                    "/role",
-                    "/charts/bar",
-                    "/home",
-                    "/category"
-                ],
-                "_id": "id",
-                "name": "test",
-                "create_time": time,
-                "__v": 0,
-                "auth_time": time,
-                "auth_name": "admin"
-            },
-            {
-                "menus": [
-                    "/role",
-                    "/charts/bar",
-                    "/home",
-                    "/category"
-                ],
-                "_id": "id",
-                "name": "test",
-                "create_time": time,
-                "__v": 0,
-                "auth_time": time,
-                "auth_name": "admin"
-            },
-
-
-        ]
+        "url": "http://localhost:8000/api/roles/3/",
+        "name": "admin",
+        "authname": "",
+        "auth_time": "2024-07-21T09:00:09.979508Z",
+        "menus": [],
+        "create_time": "2024-07-21T09:00:09.979508Z",
+        "_id": "3"
+    },
+    {
+        "url": "http://localhost:8000/api/roles/4/",
+        "name": "test",
+        "authname": "",
+        "auth_time": "2024-07-21T09:00:26.487202Z",
+        "menus": [],
+        "create_time": "2024-07-21T09:00:26.487202Z",
+        "_id": "4"
+    },
+    {
+        "url": "http://localhost:8000/api/roles/5/",
+        "name": "agent",
+        "authname": "admin",
+        "auth_time": "2024-07-21T09:11:15.242240Z",
+        "menus": [
+            "Merchandise",
+            "/category",
+            "/merchandise"
+        ],
+        "create_time": "2024-07-21T09:01:09.455749Z",
+        "_id": "5"
     }
+]
+   ```
 
 ## update role (authorize)
 ### reqURL：
-    http://localhost:5000/manage/role/update
+    http://127.0.0.1:8000/api/roles/
 
 ### method:
-    POST
+    PATCH
 
 ### parmeter:
   
@@ -493,20 +472,14 @@ success:
 
 ### response
     {
-        "status": 0,
-        "data": {
-            "menus": [
-                "/role",
-                "/charts/bar",
-                "/home",
-                "/category",
-                "/user"
-            ],
-            "_id": "id",
-            "name": "test",
-            "create_time": time,
-            "__v": 0,
-            "auth_time": time,
-            "auth_name": "admin"
-        }
+        "url": "http://localhost:8000/api/roles/5/",
+        "name": "agent",
+        "authname": "admin",
+        "auth_time": "2024-07-21T09:11:15.242240Z",
+        "menus": [
+            "Merchandise",
+            "/category"
+        ],
+        "create_time": "2024-07-21T09:01:09.455749Z",
+        "_id": "5"
     }
